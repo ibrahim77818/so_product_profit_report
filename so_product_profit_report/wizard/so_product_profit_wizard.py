@@ -64,7 +64,8 @@ class SoProductProfitWizard(models.TransientModel):
         help='Leave empty for all customers. Orders of child contacts are included.')
     company_ids = fields.Many2many(
         'res.company', string='Companies', required=True,
-        default=lambda self: self.env.companies)
+        default=lambda self: self.env.companies,
+        domain=lambda self: [('id', 'in', self.env.companies.ids)])
     group_by = fields.Selection([
         ('none', 'No Grouping'),
         ('customer', 'Customer'),
@@ -136,15 +137,19 @@ class SoProductProfitWizard(models.TransientModel):
         query = Report._search(
             self._get_report_domain(),
             order='date_order asc, order_reference asc, id asc')
-        table = Report._table
-        query_str, params = query.select(
-            *('"%s"."%s"' % (table, col) for col in REPORT_COLUMNS))
-        self.env.cr.execute(query_str, params)
+        columns = ['"%s"."%s"' % (Report._table, col) for col in REPORT_COLUMNS]
+        # 17.0: Query.select() returns an SQL object that cr.execute() accepts
+        # directly; 16.0 returned a (query_str, params) tuple.
+        sql = query.select(*columns)
+        if isinstance(sql, tuple):
+            self.env.cr.execute(*sql)
+        else:
+            self.env.cr.execute(sql)
         return self.env.cr.dictfetchall()
 
     @api.model
     def _format_margin(self, margin):
-        # Formatted in Python: QWeb collapses '%%' inside t-esc expressions.
+        # Formatted in Python: QWeb collapses '%%' inside t-out expressions.
         return '{:.2f} %'.format(margin or 0.0)
 
     @api.model

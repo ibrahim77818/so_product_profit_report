@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-05 10:00+0000\n"
 "PO-Revision-Date: 2026-11-05 10:00+0000\n"
@@ -134,7 +134,7 @@ msgid "Leave empty for all customers. Orders of child contacts are included."
 msgstr ""
 
 #. module: so_product_profit_report
-#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_report__state__done
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__locked
 msgid "Locked"
 msgstr ""
 

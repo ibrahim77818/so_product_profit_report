@@ -20,8 +20,8 @@ class SoProductProfitReport(models.Model):
     date_order = fields.Datetime(string='Order Date', readonly=True)
     state = fields.Selection([
         ('sale', 'Sales Order'),
-        ('done', 'Locked'),
     ], string='Status', readonly=True)
+    locked = fields.Boolean(string='Locked', readonly=True)
     partner_id = fields.Many2one('res.partner', string='Customer', readonly=True)
     commercial_partner_id = fields.Many2one(
         'res.partner', string='Customer Entity', readonly=True)
@@ -63,6 +63,7 @@ class SoProductProfitReport(models.Model):
             s.name AS order_reference,
             s.date_order AS date_order,
             s.state AS state,
+            COALESCE(s.locked, FALSE) AS locked,
             s.partner_id AS partner_id,
             partner.commercial_partner_id AS commercial_partner_id,
             s.user_id AS user_id,
@@ -100,7 +101,7 @@ class SoProductProfitReport(models.Model):
     @api.model
     def _where_sql(self):
         return """
-            s.state IN ('sale', 'done')
+            s.state = 'sale'
             AND l.display_type IS NULL
             AND COALESCE(l.is_downpayment, FALSE) = FALSE
         """
@@ -114,14 +115,16 @@ class SoProductProfitReport(models.Model):
                 WHERE {self._where_sql()}
             )
         """)
-        # Indexes used by the date/company/state filter of the view.
+        # Index used by the date/company/state filter of the view.
         self.env.cr.execute("""
             CREATE INDEX IF NOT EXISTS sale_order_sopr_state_date_company_idx
             ON sale_order (state, date_order, company_id)
         """)
 
     # ------------------------------------------------------------------
-    # Aggregation: ratios must be recomputed from sums, never averaged
+    # Aggregation: ratios must be recomputed from sums, never averaged.
+    # In 17.0 the list/pivot/graph views still go through web_read_group ->
+    # read_group, so this public override is the right hook.
     # ------------------------------------------------------------------
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None,

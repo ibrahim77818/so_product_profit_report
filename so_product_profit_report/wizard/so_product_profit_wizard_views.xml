@@ -21,7 +21,6 @@
                            placeholder="All customers"/>
                     <field name="company_ids" widget="many2many_tags"
                            options="{'no_create': True}"
-                           domain="[('id', 'in', allowed_company_ids)]"
                            groups="base.group_multi_company"/>
                 </group>
                 <field name="xlsx_file" invisible="1" filename="xlsx_filename"/>

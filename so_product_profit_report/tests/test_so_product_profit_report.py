@@ -247,6 +247,18 @@ class TestSoProductProfitReport(TransactionCase):
         data = self._wizard()._get_report_data()
         self.assertNotIn(self.order_2.name, {l['order'] for l in data['lines']})
 
+    def test_24_locked_orders_are_included(self):
+        # 17.0: locking keeps state 'sale' and sets the 'locked' flag
+        # (16.0 used the 'done' state instead).
+        self.order_1.action_lock()
+        self.assertTrue(self.order_1.locked)
+        self.assertEqual(self.order_1.state, 'sale')
+        data = self._wizard()._get_report_data()
+        self.assertIn(self.order_1.name, {l['order'] for l in data['lines']})
+        rows = self.env['so.product.profit.report'].search(
+            [('order_id', '=', self.order_1.id)])
+        self.assertTrue(rows and all(rows.mapped('locked')))
+
     # ------------------------------------------------------------------
     # Outputs
     # ------------------------------------------------------------------

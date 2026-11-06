@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'SO Product Profit Report',
-    'version': '16.0.1.0.0',
+    'version': '17.0.1.0.0',
     'category': 'Sales/Sales',
     'summary': 'Product profit & margin report on confirmed sales orders: '
                'browser (list/pivot), modern PDF and XLSX, Arabic RTL.',
