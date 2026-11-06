@@ -15,7 +15,7 @@
                 <field name="company_id" optional="hide" groups="base.group_multi_company"/>
                 <field name="locked" optional="hide" widget="boolean"/>
                 <field name="quantity" sum="Total"/>
-                <field name="product_uom_id" optional="show" groups="uom.group_uom"/>
+                <field name="product_uom_id" optional="show"/>
                 <field name="currency_id" column_invisible="True"/>
                 <field name="unit_cost"/>
                 <field name="unit_price"/>
@@ -69,7 +69,7 @@
                 <filter name="filter_zero_cost" string="Missing Cost" domain="[('total_cost', '=', 0)]"/>
                 <separator/>
                 <filter name="filter_date_order" string="Order Date" date="date_order"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="groupby_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
                     <filter name="groupby_product" string="Product" context="{'group_by': 'product_id'}"/>
                     <filter name="groupby_categ" string="Product Category" context="{'group_by': 'categ_id'}"/>

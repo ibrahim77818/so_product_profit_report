@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-05 10:00+0000\n"
 "PO-Revision-Date: 2026-11-05 10:00+0000\n"
@@ -123,7 +123,6 @@ msgstr ""
 #. module: so_product_profit_report
 #: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
 #: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__group_by
-#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
 #: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
 msgid "Group By"
 msgstr ""

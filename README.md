@@ -1,6 +1,6 @@
 # SO Product Profit Report
 
-**Odoo 18.0 · Community & Enterprise · LGPL-3**
+**Odoo 19.0 · Community & Enterprise · LGPL-3**
 
 Product profit and margin on confirmed sales orders, with a wizard under
 **Sales › Reporting › Product Profit Report**. Show the result on screen
@@ -17,8 +17,8 @@ One branch per supported Odoo version. Use the branch that matches your Odoo.
 |---|---|---|
 | [`16.0`](../../tree/16.0) | Odoo 16.0 | Original release. |
 | [`17.0`](../../tree/17.0) | Odoo 17.0 | Locked orders use the new `locked` flag (17.0 dropped the `done` state); optional **Locked** column; `t-out` in the PDF; `column_invisible` in the list. |
-| [`18.0`](../../tree/18.0) | Odoo 18.0 | `<tree>` → `<list>`, `view_mode` `list`, `group_operator` → `aggregator`. |  ⬅ this branch
-| [`19.0`](../../tree/19.0) | Odoo 19.0 | Weighted ratios computed in SQL via `_read_group_select` (19.0 groups through `formatted_read_group`); `product_uom` → `product_uom_id` handled; `self.env._()` for translations. |
+| [`18.0`](../../tree/18.0) | Odoo 18.0 | `<tree>` → `<list>`, `view_mode` `list`, `group_operator` → `aggregator`. |
+| [`19.0`](../../tree/19.0) | Odoo 19.0 | Weighted ratios computed in SQL via `_read_group_select` (19.0 groups through `formatted_read_group`); `product_uom` → `product_uom_id` handled; `self.env._()` for translations. |  ⬅ this branch
 
 ## Features
 

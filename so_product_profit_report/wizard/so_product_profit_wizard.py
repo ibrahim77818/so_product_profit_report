@@ -6,9 +6,12 @@ from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.misc import xlsxwriter
+try:
+    from odoo.tools.misc import xlsxwriter
+except ImportError:  # 19.0 safety net: import the library directly
+    import xlsxwriter
 
 
 # First strong character decides the text direction (Hebrew/Arabic blocks -> RTL).
@@ -85,18 +88,18 @@ class SoProductProfitWizard(models.TransientModel):
     def _check_dates(self):
         for wizard in self:
             if wizard.date_from and wizard.date_to and wizard.date_from > wizard.date_to:
-                raise ValidationError(_("The start date must be on or before the end date."))
+                raise ValidationError(self.env._("The start date must be on or before the end date."))
 
     def _check_parameters(self):
         self.ensure_one()
         if not self.date_from or not self.date_to:
-            raise UserError(_("Please set both the start date and the end date."))
+            raise UserError(self.env._("Please set both the start date and the end date."))
         if self.date_from > self.date_to:
-            raise ValidationError(_("The start date must be on or before the end date."))
+            raise ValidationError(self.env._("The start date must be on or before the end date."))
         if not self.company_ids:
-            raise UserError(_("Please select at least one company."))
+            raise UserError(self.env._("Please select at least one company."))
         if len(self.company_ids.currency_id) > 1:
-            raise UserError(_(
+            raise UserError(self.env._(
                 "The selected companies use different currencies (%s). "
                 "Please select companies that share one currency.",
                 ", ".join(self.company_ids.currency_id.mapped('name'))))
@@ -174,7 +177,7 @@ class SoProductProfitWizard(models.TransientModel):
         self._check_parameters()
         rows = self._fetch_rows()
         if raise_if_empty and not rows:
-            raise UserError(_("No confirmed sales order lines match the selected filters."))
+            raise UserError(self.env._("No confirmed sales order lines match the selected filters."))
 
         partners = {p.id: p.display_name for p in self.env['res.partner'].browse(
             {r['partner_id'] for r in rows})}
@@ -230,7 +233,7 @@ class SoProductProfitWizard(models.TransientModel):
 
         lang = self.env['res.lang']._lang_get(self.env.lang or 'en_US')
         companies = ', '.join(self.company_ids.mapped('name'))
-        customers = ', '.join(self.partner_ids.mapped('display_name')) or _("All Customers")
+        customers = ', '.join(self.partner_ids.mapped('display_name')) or self.env._("All Customers")
         group_labels = dict(self._fields['group_by']._description_selection(self.env))
         return {
             'lines': lines,
@@ -264,7 +267,7 @@ class SoProductProfitWizard(models.TransientModel):
                 'pivot_row_groupby': [GROUP_FIELDS[self.group_by]],
             })
         action['context'] = context
-        action['name'] = _(
+        action['name'] = self.env._(
             "Product Profit: %(from)s - %(to)s",
             **{'from': fields.Date.to_string(self.date_from),
                'to': fields.Date.to_string(self.date_to)})
@@ -309,7 +312,7 @@ class SoProductProfitWizard(models.TransientModel):
 
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
-        sheet = workbook.add_worksheet(_("Product Profit")[:31])
+        sheet = workbook.add_worksheet(self.env._("Product Profit")[:31])
         if rtl:
             sheet.right_to_left()
         font = 'Arial' if rtl else 'Calibri'
@@ -350,25 +353,25 @@ class SoProductProfitWizard(models.TransientModel):
                         num_format='0.00%')
 
         headers = [
-            (_("Order Date"), 12), (_("Order"), 14), (_("Customer"), 28),
-            (_("Product"), 34), (_("Quantity"), 11), (_("Unit"), 9),
-            (_("Cost Price"), 13), (_("Sale Price"), 13), (_("Total Cost"), 15),
-            (_("Total Sales"), 15), (_("Profit"), 15), (_("Margin %"), 10),
+            (self.env._("Order Date"), 12), (self.env._("Order"), 14), (self.env._("Customer"), 28),
+            (self.env._("Product"), 34), (self.env._("Quantity"), 11), (self.env._("Unit"), 9),
+            (self.env._("Cost Price"), 13), (self.env._("Sale Price"), 13), (self.env._("Total Cost"), 15),
+            (self.env._("Total Sales"), 15), (self.env._("Profit"), 15), (self.env._("Margin %"), 10),
         ]
         last_col = len(headers) - 1
         for col, (_label, width) in enumerate(headers):
             sheet.set_column(col, col, width)
 
         sheet.set_row(0, 26)
-        sheet.merge_range(0, 0, 0, last_col, _("Sales Product Profit Report"), f_title)
+        sheet.merge_range(0, 0, 0, last_col, self.env._("Sales Product Profit Report"), f_title)
         meta = [
-            (_("Period"), '%s  →  %s' % (
+            (self.env._("Period"), '%s  →  %s' % (
                 self.date_from.strftime(lang.date_format or '%m/%d/%Y'),
                 self.date_to.strftime(lang.date_format or '%m/%d/%Y'))),
-            (_("Companies"), data['companies']),
-            (_("Customers"), data['customers']),
-            (_("Group By"), data['group_label']),
-            (_("Currency"), currency.name),
+            (self.env._("Companies"), data['companies']),
+            (self.env._("Customers"), data['customers']),
+            (self.env._("Group By"), data['group_label']),
+            (self.env._("Currency"), currency.name),
         ]
         row = 2
         for label, value in meta:
@@ -415,11 +418,11 @@ class SoProductProfitWizard(models.TransientModel):
                 sheet.write_number(row, 11, line['margin'] / 100.0, f_pct)
                 row += 1
             if data['grouped']:
-                write_totals(row, _("Subtotal: %s", group['label'] or ''), group['totals'],
+                write_totals(row, self.env._("Subtotal: %s", group['label'] or ''), group['totals'],
                              f_sub_label, f_sub_money, f_sub_pct, f_sub_qty)
                 row += 1
 
-        write_totals(row, _("Grand Total"), data['totals'],
+        write_totals(row, self.env._("Grand Total"), data['totals'],
                      f_tot_label, f_tot_money, f_tot_pct)
 
         sheet.freeze_panes(header_row + 1, 0)

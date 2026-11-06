@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, tools
+from odoo.tools import SQL
 
 
 class SoProductProfitReport(models.Model):
@@ -54,8 +55,15 @@ class SoProductProfitReport(models.Model):
         return "(CASE COALESCE(s.currency_rate, 0) WHEN 0 THEN 1.0 ELSE s.currency_rate END)"
 
     @api.model
+    def _line_uom_column(self):
+        # 19.0 renamed sale.order.line.product_uom -> product_uom_id.
+        line_fields = self.env['sale.order.line']._fields
+        return 'product_uom_id' if 'product_uom_id' in line_fields else 'product_uom'
+
+    @api.model
     def _select_sql(self):
         rate = self._rate_sql()
+        uom = self._line_uom_column()
         cost = "(COALESCE(l.purchase_price, 0) * l.product_uom_qty)"
         return f"""
             l.id AS id,
@@ -73,7 +81,7 @@ class SoProductProfitReport(models.Model):
             l.product_id AS product_id,
             pp.product_tmpl_id AS product_tmpl_id,
             pt.categ_id AS categ_id,
-            l.product_uom AS product_uom_id,
+            l.{uom} AS product_uom_id,
             l.product_uom_qty AS quantity,
             COALESCE(l.purchase_price, 0) / {rate} AS unit_cost,
             CASE WHEN l.product_uom_qty <> 0
@@ -123,38 +131,28 @@ class SoProductProfitReport(models.Model):
 
     # ------------------------------------------------------------------
     # Aggregation: ratios must be recomputed from sums, never averaged.
-    # In 18.0 the list/pivot/graph views still go through web_read_group ->
-    # read_group, so this public override is the right hook.
+    # 19.0: the web client groups through formatted_read_group/_read_group
+    # (read_group is no longer called by list/pivot/graph), so the ratio is
+    # computed in SQL at the single point every grouping path goes through.
     # ------------------------------------------------------------------
-    @api.model
-    def read_group(self, domain, fields, groupby, offset=0, limit=None,
-                   orderby=False, lazy=True):
-        aliases = {spec.split(':')[0].strip() for spec in fields}
-        ratio_fields = {'margin_percent', 'unit_cost', 'unit_price'} & aliases
-        if not ratio_fields:
-            return super().read_group(domain, fields, groupby, offset=offset,
-                                      limit=limit, orderby=orderby, lazy=lazy)
-        helpers = [
-            'sopr_sales:sum(total_sales)',
-            'sopr_cost:sum(total_cost)',
-            'sopr_profit:sum(profit)',
-            'sopr_qty:sum(quantity)',
-        ]
-        result = super().read_group(domain, list(fields) + helpers, groupby,
-                                    offset=offset, limit=limit,
-                                    orderby=orderby, lazy=lazy)
-        for group in result:
-            sales = group.pop('sopr_sales', 0.0) or 0.0
-            cost = group.pop('sopr_cost', 0.0) or 0.0
-            profit = group.pop('sopr_profit', 0.0) or 0.0
-            qty = group.pop('sopr_qty', 0.0) or 0.0
-            if 'margin_percent' in ratio_fields:
-                group['margin_percent'] = self._compute_margin(profit, sales)
-            if 'unit_cost' in ratio_fields:
-                group['unit_cost'] = cost / qty if qty else 0.0
-            if 'unit_price' in ratio_fields:
-                group['unit_price'] = sales / qty if qty else 0.0
-        return result
+    _RATIO_FIELDS = {
+        # field: (numerator field, denominator field, factor)
+        'margin_percent': ('profit', 'total_sales', 100.0),
+        'unit_cost': ('total_cost', 'quantity', 1.0),
+        'unit_price': ('total_sales', 'quantity', 1.0),
+    }
+
+    def _read_group_select(self, aggregate_spec, query):
+        fname, __, func = aggregate_spec.partition(':')
+        if fname in self._RATIO_FIELDS and func in ('avg', 'sum'):
+            num_name, den_name, factor = self._RATIO_FIELDS[fname]
+            num = self._field_to_sql(self._table, num_name, query)
+            den = self._field_to_sql(self._table, den_name, query)
+            return SQL(
+                "(CASE WHEN SUM(%s) <> 0 THEN SUM(%s) / SUM(%s) * %s ELSE 0 END)",
+                den, num, den, factor,
+            )
+        return super()._read_group_select(aggregate_spec, query)
 
     @api.model
     def _compute_margin(self, profit, sales):

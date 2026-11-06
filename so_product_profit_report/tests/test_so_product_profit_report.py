@@ -180,18 +180,26 @@ class TestSoProductProfitReport(TransactionCase):
         self.assertAlmostEqual(
             sum(g['totals']['profit'] for g in data['groups']), data['totals']['profit'])
 
-    def test_13_read_group_recomputes_ratios(self):
+    def test_13_grouping_recomputes_ratios(self):
+        # 19.0: list/pivot/graph group through _read_group; the ratio fields
+        # are computed from sums in SQL (_read_group_select), never averaged.
         Report = self.env['so.product.profit.report']
         domain = self._wizard()._get_report_domain()
-        groups = Report.read_group(
-            domain, ['profit:sum', 'total_sales:sum', 'margin_percent:avg', 'unit_price:avg'],
-            ['product_id'])
-        by_product = {g['product_id'][0]: g for g in groups}
-        y = by_product[self.product_y.id]
+        rows = Report._read_group(
+            domain, ['product_id'],
+            ['profit:sum', 'total_sales:sum', 'margin_percent:avg',
+             'unit_price:avg', 'unit_cost:sum'])
+        by_product = {product.id: values for product, *values in rows}
+        profit, sales, margin, unit_price, unit_cost = by_product[self.product_y.id]
+        self.assertAlmostEqual(profit, 50.0)
+        self.assertAlmostEqual(sales, 200.0)
         # Simple average of (33.33, -50) would be -8.33; weighted margin is 25.
-        self.assertAlmostEqual(y['margin_percent'], 25.0, places=4)
-        self.assertAlmostEqual(y['unit_price'], 40.0, places=4)
-        self.assertNotIn('sopr_sales', y)
+        self.assertAlmostEqual(margin, 25.0, places=4)
+        self.assertAlmostEqual(unit_price, 40.0, places=4)   # 200 / 5 units
+        self.assertAlmostEqual(unit_cost, 30.0, places=4)    # 150 / 5 units, not 30 + 30
+        # Whole-period totals (no groupby) use the same rule.
+        [(total_margin,)] = Report._read_group(domain, [], ['margin_percent:avg'])
+        self.assertAlmostEqual(total_margin, 32.5, places=4)
 
     def test_14_multi_currency_order_converted_to_company_currency(self):
         foreign = self.env['res.currency'].search(
