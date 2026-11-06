@@ -1,0 +1,416 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* so_product_profit_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-05 10:00+0000\n"
+"PO-Revision-Date: 2026-11-05 10:00+0000\n"
+"Last-Translator: Ibrahim Yahia\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "All Customers"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "All customers"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__company_ids
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Companies"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__company_id
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+msgid "Company"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__unit_cost
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Cost Price"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__currency_id
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Currency"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__partner_id
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_wizard__group_by__customer
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Customer"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__commercial_partner_id
+msgid "Customer Entity"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__partner_ids
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Customers"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__date_to
+msgid "End Date"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__xlsx_file
+msgid "Excel File"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__xlsx_filename
+msgid "Excel File Name"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "Export XLSX"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "Filters"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "From"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Grand Total"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Gross Profit"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__group_by
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Group By"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,help:so_product_profit_report.field_so_product_profit_wizard__partner_ids
+msgid "Leave empty for all customers. Orders of child contacts are included."
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_report__state__done
+msgid "Locked"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+msgid "Loss Lines"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Margin %"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__margin_percent
+msgid "Margin (%)"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+msgid "Missing Cost"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "No confirmed sales order lines match the selected filters."
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_wizard__group_by__none
+msgid "No Grouping"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "Options"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Order"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__date_order
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Order Date"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Order Lines"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__order_reference
+msgid "Order Reference"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "PDF Report"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "Period"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "Please select at least one company."
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "Please set both the start date and the end date."
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__product_id
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_wizard__group_by__product
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Product"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__categ_id
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+msgid "Product Category"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "Product Profit"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.actions.act_window,name:so_product_profit_report.action_so_product_profit_report
+msgid "Product Profit Analysis"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+#: model:ir.actions.act_window,name:so_product_profit_report.action_so_product_profit_wizard
+#: model:ir.ui.menu,name:so_product_profit_report.menu_so_product_profit_report
+#: model:ir.actions.report,name:so_product_profit_report.action_report_so_product_profit
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Product Profit Report"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#, python-format
+msgid "Product Profit: %(from)s - %(to)s"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__profit
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Profit"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,help:so_product_profit_report.field_so_product_profit_report__margin_percent
+msgid "Profit / Total Sales x 100. Group totals are weighted by sales."
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Profit = Total Sales (untaxed, after discount) − Total Cost. Margin % = Profit ÷ Total Sales × 100. Amounts are in company currency."
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__quantity
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Quantity"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__report_lang
+msgid "Report Language"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__unit_price
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Sale Price"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Sales Analytics"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__order_id
+#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_report__state__sale
+#: model:ir.model.fields.selection,name:so_product_profit_report.selection__so_product_profit_wizard__group_by__order
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+msgid "Sales Order"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model,name:so_product_profit_report.model_so_product_profit_report
+msgid "Sales Product Profit Analysis"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model,name:so_product_profit_report.model_report_so_product_profit_report_report_so_product_profit
+msgid "Sales Product Profit PDF Report"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "Sales Product Profit Report"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model,name:so_product_profit_report.model_so_product_profit_wizard
+msgid "Sales Product Profit Report Wizard"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__team_id
+msgid "Sales Team"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__user_id
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_search
+msgid "Salesperson"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_wizard_form
+msgid "Show on Browser"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_wizard__date_from
+msgid "Start Date"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__state
+msgid "Status"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Subtotal"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#, python-format
+msgid "Subtotal: %s"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#, python-format
+msgid "The selected companies use different currencies (%s). Please select companies that share one currency."
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "The start date must be on or before the end date."
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "To"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.view_so_product_profit_report_tree
+msgid "Total"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__total_cost
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Total Cost"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__total_sales
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+#: model_terms:ir.ui.view,arch_db:so_product_profit_report.report_so_product_profit
+msgid "Total Sales"
+msgstr ""
+
+#. module: so_product_profit_report
+#: code:addons/so_product_profit_report/wizard/so_product_profit_wizard.py:0
+msgid "Unit"
+msgstr ""
+
+#. module: so_product_profit_report
+#: model:ir.model.fields,field_description:so_product_profit_report.field_so_product_profit_report__product_uom_id
+msgid "Unit of Measure"
+msgstr ""

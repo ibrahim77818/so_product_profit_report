@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_so_product_profit" model="ir.actions.report">
+        <field name="name">Product Profit Report</field>
+        <field name="model">so.product.profit.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">so_product_profit_report.report_so_product_profit</field>
+        <field name="report_file">so_product_profit_report.report_so_product_profit</field>
+        <field name="print_report_name">'Product Profit %s - %s' % (object.date_from, object.date_to)</field>
+        <field name="paperformat_id" ref="paperformat_so_product_profit"/>
+    </record>
+
+    <template id="report_so_product_profit">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="r" t-value="reports[o.id]"/>
+                <t t-set="currency" t-value="r['currency']"/>
+                <t t-set="money" t-value="{'widget': 'float', 'precision': currency.decimal_places}"/>
+                <t t-set="money_cur" t-value="{'widget': 'monetary', 'display_currency': currency}"/>
+                <t t-call="web.external_layout">
+                    <div t-attf-class="page o_sopr o_sopr_#{r['direction']}" t-att-dir="r['direction']">
+
+                        <!-- Title band -->
+                        <table class="o_sopr_band">
+                            <tr>
+                                <td class="o_sopr_band_title">
+                                    <div class="o_sopr_kicker">Sales Analytics</div>
+                                    <h2>Product Profit Report</h2>
+                                </td>
+                                <td class="o_sopr_band_period">
+                                    <table class="o_sopr_period">
+                                        <tr>
+                                            <td class="o_sopr_meta_label">From</td>
+                                            <td class="o_sopr_meta_value o_sopr_ltr" t-esc="r['date_from']" t-options="{'widget': 'date'}"/>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_sopr_meta_label">To</td>
+                                            <td class="o_sopr_meta_value o_sopr_ltr" t-esc="r['date_to']" t-options="{'widget': 'date'}"/>
+                                        </tr>
+                                        <tr>
+                                            <td class="o_sopr_meta_label">Currency</td>
+                                            <td class="o_sopr_meta_value" t-esc="currency.name"/>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- KPI cards -->
+                        <table class="o_sopr_kpis">
+                            <tr>
+                                <td class="o_sopr_kpi">
+                                    <div class="o_sopr_kpi_label">Total Sales</div>
+                                    <div class="o_sopr_kpi_value o_sopr_ltr" t-esc="r['totals']['sales']" t-options="money_cur"/>
+                                </td>
+                                <td class="o_sopr_kpi">
+                                    <div class="o_sopr_kpi_label">Total Cost</div>
+                                    <div class="o_sopr_kpi_value o_sopr_ltr" t-esc="r['totals']['cost']" t-options="money_cur"/>
+                                </td>
+                                <td t-attf-class="o_sopr_kpi o_sopr_kpi_profit #{'o_sopr_kpi_loss' if r['totals']['profit'] &lt; 0 else ''}">
+                                    <div class="o_sopr_kpi_label">Gross Profit</div>
+                                    <div class="o_sopr_kpi_value o_sopr_ltr" t-esc="r['totals']['profit']" t-options="money_cur"/>
+                                </td>
+                                <td class="o_sopr_kpi">
+                                    <div class="o_sopr_kpi_label">Margin %</div>
+                                    <div class="o_sopr_kpi_value o_sopr_ltr" t-esc="r['totals']['margin_str']"/>
+                                </td>
+                                <td class="o_sopr_kpi">
+                                    <div class="o_sopr_kpi_label">Order Lines</div>
+                                    <div class="o_sopr_kpi_value o_sopr_ltr" t-esc="r['totals']['count']"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Filters -->
+                        <table class="o_sopr_filters">
+                            <tr>
+                                <td class="o_sopr_meta_label">Companies</td>
+                                <td class="o_sopr_meta_value"><span t-att-dir="r['companies_dir']" t-esc="r['companies']"/></td>
+                                <td class="o_sopr_meta_label">Customers</td>
+                                <td class="o_sopr_meta_value"><span t-att-dir="r['customers_dir']" t-esc="r['customers']"/></td>
+                                <td class="o_sopr_meta_label">Group By</td>
+                                <td class="o_sopr_meta_value" t-esc="r['group_label']"/>
+                            </tr>
+                        </table>
+
+                        <!--
+                            Overlap prevention, part 2 (CSS level): the thead is a
+                            table-header-group so it repeats on every page under the
+                            reserved header area; rows never split across pages.
+                        -->
+                        <table class="o_sopr_table">
+                            <thead>
+                                <tr>
+                                    <th class="o_sopr_c_date">Order Date</th>
+                                    <th class="o_sopr_c_order">Order</th>
+                                    <th class="o_sopr_c_text">Customer</th>
+                                    <th class="o_sopr_c_text">Product</th>
+                                    <th class="o_sopr_num">Quantity</th>
+                                    <th class="o_sopr_num">Cost Price</th>
+                                    <th class="o_sopr_num">Sale Price</th>
+                                    <th class="o_sopr_num">Total Cost</th>
+                                    <th class="o_sopr_num">Total Sales</th>
+                                    <th class="o_sopr_num">Profit</th>
+                                    <th class="o_sopr_num">Margin %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="r['groups']" t-as="group">
+                                    <tr t-if="r['grouped']" class="o_sopr_group">
+                                        <td colspan="11"><span t-att-dir="group['label_dir']" t-esc="group['label']"/></td>
+                                    </tr>
+                                    <tr t-foreach="group['lines']" t-as="line" class="o_sopr_line">
+                                        <td class="o_sopr_c_date o_sopr_ltr" t-esc="line['date']" t-options="{'widget': 'date'}"/>
+                                        <td class="o_sopr_c_order"><span dir="ltr" t-esc="line['order']"/></td>
+                                        <td class="o_sopr_c_text"><span t-att-dir="line['customer_dir']" t-esc="line['customer']"/></td>
+                                        <td class="o_sopr_c_text"><span t-att-dir="line['product_dir']" t-esc="line['product']"/></td>
+                                        <td class="o_sopr_num">
+                                            <span class="o_sopr_ltr" t-esc="line['qty']" t-options="{'widget': 'float', 'precision': 2}"/>
+                                            <span class="o_sopr_uom" t-esc="line['uom']"/>
+                                        </td>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="line['unit_cost']" t-options="money"/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="line['unit_price']" t-options="money"/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="line['cost']" t-options="money"/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="line['sales']" t-options="money"/>
+                                        <td t-attf-class="o_sopr_num o_sopr_ltr #{'o_sopr_neg' if line['profit'] &lt; 0 else ''}" t-esc="line['profit']" t-options="money"/>
+                                        <td t-attf-class="o_sopr_num o_sopr_ltr #{'o_sopr_neg' if line['margin'] &lt; 0 else ''}" t-esc="line['margin_str']"/>
+                                    </tr>
+                                    <tr t-if="r['grouped']" class="o_sopr_subtotal">
+                                        <td colspan="4" class="o_sopr_c_text">Subtotal</td>
+                                        <td class="o_sopr_num o_sopr_ltr"><t t-if="group['totals']['qty'] is not False" t-esc="group['totals']['qty']" t-options="{'widget': 'float', 'precision': 2}"/></td>
+                                        <td/>
+                                        <td/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="group['totals']['cost']" t-options="money"/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="group['totals']['sales']" t-options="money"/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="group['totals']['profit']" t-options="money"/>
+                                        <td class="o_sopr_num o_sopr_ltr" t-esc="group['totals']['margin_str']"/>
+                                    </tr>
+                                </t>
+                                <tr class="o_sopr_total">
+                                    <td colspan="7" class="o_sopr_c_text">Grand Total</td>
+                                    <td class="o_sopr_num o_sopr_ltr" t-esc="r['totals']['cost']" t-options="money_cur"/>
+                                    <td class="o_sopr_num o_sopr_ltr" t-esc="r['totals']['sales']" t-options="money_cur"/>
+                                    <td class="o_sopr_num o_sopr_ltr" t-esc="r['totals']['profit']" t-options="money_cur"/>
+                                    <td class="o_sopr_num o_sopr_ltr" t-esc="r['totals']['margin_str']"/>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="o_sopr_note">Profit = Total Sales (untaxed, after discount) − Total Cost. Margin % = Profit ÷ Total Sales × 100. Amounts are in company currency.</div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

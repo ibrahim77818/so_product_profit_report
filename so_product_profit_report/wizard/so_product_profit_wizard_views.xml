@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_so_product_profit_wizard_form" model="ir.ui.view">
+        <field name="name">so.product.profit.wizard.form</field>
+        <field name="model">so.product.profit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Product Profit Report">
+                <group>
+                    <group string="Period">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group string="Options">
+                        <field name="group_by"/>
+                        <field name="report_lang"/>
+                    </group>
+                </group>
+                <group string="Filters">
+                    <field name="partner_ids" widget="many2many_tags"
+                           options="{'no_create': True}"
+                           placeholder="All customers"/>
+                    <field name="company_ids" widget="many2many_tags"
+                           options="{'no_create': True}"
+                           domain="[('id', 'in', allowed_company_ids)]"
+                           groups="base.group_multi_company"/>
+                </group>
+                <field name="xlsx_file" invisible="1" filename="xlsx_filename"/>
+                <field name="xlsx_filename" invisible="1"/>
+                <footer>
+                    <button name="action_view_report" type="object" string="Show on Browser"
+                            class="btn-primary" icon="fa-table" data-hotkey="q"/>
+                    <button name="action_print_pdf" type="object" string="PDF Report"
+                            class="btn-secondary" icon="fa-file-pdf-o" data-hotkey="w"/>
+                    <button name="action_export_xlsx" type="object" string="Export XLSX"
+                            class="btn-secondary" icon="fa-file-excel-o" data-hotkey="e"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_so_product_profit_wizard" model="ir.actions.act_window">
+        <field name="name">Product Profit Report</field>
+        <field name="res_model">so.product.profit.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_so_product_profit_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

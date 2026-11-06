@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_so_product_profit_report"
+              name="Product Profit Report"
+              parent="sale.menu_sale_report"
+              action="action_so_product_profit_wizard"
+              groups="sales_team.group_sale_salesman_all_leads"
+              sequence="40"/>
+</odoo>

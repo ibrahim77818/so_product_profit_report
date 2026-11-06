@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_so_product_profit_report_tree" model="ir.ui.view">
+        <field name="name">so.product.profit.report.tree</field>
+        <field name="model">so.product.profit.report</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false"
+                  decoration-danger="profit &lt; 0" decoration-muted="total_sales == 0">
+                <field name="date_order" widget="date"/>
+                <field name="order_id" widget="many2one" optional="show"/>
+                <field name="partner_id" optional="show"/>
+                <field name="product_id"/>
+                <field name="categ_id" optional="hide"/>
+                <field name="user_id" optional="hide" widget="many2one_avatar_user"/>
+                <field name="company_id" optional="hide" groups="base.group_multi_company"/>
+                <field name="quantity" sum="Total"/>
+                <field name="product_uom_id" optional="show" groups="uom.group_uom"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="unit_cost"/>
+                <field name="unit_price"/>
+                <field name="total_cost" sum="Total"/>
+                <field name="total_sales" sum="Total"/>
+                <field name="profit" sum="Total"/>
+                <field name="margin_percent"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_so_product_profit_report_pivot" model="ir.ui.view">
+        <field name="name">so.product.profit.report.pivot</field>
+        <field name="model">so.product.profit.report</field>
+        <field name="arch" type="xml">
+            <pivot sample="1">
+                <field name="product_id" type="row"/>
+                <field name="date_order" interval="month" type="col"/>
+                <field name="total_sales" type="measure"/>
+                <field name="total_cost" type="measure"/>
+                <field name="profit" type="measure"/>
+                <field name="margin_percent" type="measure"/>
+                <field name="unit_cost" invisible="1"/>
+                <field name="unit_price" invisible="1"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_so_product_profit_report_graph" model="ir.ui.view">
+        <field name="name">so.product.profit.report.graph</field>
+        <field name="model">so.product.profit.report</field>
+        <field name="arch" type="xml">
+            <graph type="bar" sample="1">
+                <field name="product_id"/>
+                <field name="profit" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_so_product_profit_report_search" model="ir.ui.view">
+        <field name="name">so.product.profit.report.search</field>
+        <field name="model">so.product.profit.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="order_id"/>
+                <field name="partner_id" operator="child_of"/>
+                <field name="product_id"/>
+                <field name="categ_id" operator="child_of"/>
+                <field name="user_id"/>
+                <filter name="filter_loss" string="Loss Lines" domain="[('profit', '&lt;', 0)]"/>
+                <filter name="filter_zero_cost" string="Missing Cost" domain="[('total_cost', '=', 0)]"/>
+                <separator/>
+                <filter name="filter_date_order" string="Order Date" date="date_order"/>
+                <group expand="0" string="Group By">
+                    <filter name="groupby_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                    <filter name="groupby_product" string="Product" context="{'group_by': 'product_id'}"/>
+                    <filter name="groupby_categ" string="Product Category" context="{'group_by': 'categ_id'}"/>
+                    <filter name="groupby_order" string="Sales Order" context="{'group_by': 'order_id'}"/>
+                    <filter name="groupby_user" string="Salesperson" context="{'group_by': 'user_id'}"/>
+                    <filter name="groupby_company" string="Company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                    <filter name="groupby_date" string="Order Date" context="{'group_by': 'date_order:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_so_product_profit_report" model="ir.actions.act_window">
+        <field name="name">Product Profit Analysis</field>
+        <field name="res_model">so.product.profit.report</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="search_view_id" ref="view_so_product_profit_report_search"/>
+        <field name="context">{}</field>
+    </record>
+</odoo>

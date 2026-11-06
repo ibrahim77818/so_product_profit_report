@@ -1,0 +1,189 @@
+<!-- Odoo Apps description page for so_product_profit_report (Odoo 16.0). Inline styles only: apps.odoo.com strips <style> and <script> blocks. -->
+<section style="max-width:1120px;margin:0 auto;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#2b2b33;">
+
+<!-- ============================== HERO ============================== -->
+<div style="background:linear-gradient(120deg,#017E84 0%,#3d6b78 45%,#714B67 100%);border-radius:18px;padding:48px 40px 40px;color:#ffffff;margin-top:12px;">
+  <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:10px;">Sales &middot; Reporting &middot; Profitability</div>
+  <h1 style="font-size:40px;line-height:1.15;font-weight:700;margin:0 0 14px;color:#ffffff;">SO Product Profit Report</h1>
+  <p style="font-size:19px;line-height:1.55;max-width:760px;margin:0 0 24px;color:#ffffff;opacity:.95;">See exactly how much every product earns on your confirmed sales orders: cost, sale price, profit and margin&nbsp;% per line, with correct subtotals. Open it on screen, print a clean PDF, or export to Excel &ndash; in English or Arabic with full right-to-left layout.</p>
+  <div>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Odoo 16.0</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Community &amp; Enterprise</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">22 automated tests</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Arabic (ar_001) &amp; RTL</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">Technical name: so_product_profit_report</span>
+    <span style="display:inline-block;border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:6px 14px;margin:0 8px 8px 0;font-size:14px;">LGPL-3</span>
+  </div>
+</div>
+
+<!-- ============================== KEY NUMBERS ============================== -->
+<div style="display:flex;flex-wrap:wrap;margin:28px -8px 8px;">
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">3 outputs</div><div style="font-size:15px;color:#555;">List / pivot / graph on screen, PDF and XLSX from one wizard</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">4 groupings</div><div style="font-size:15px;color:#555;">No grouping, customer, product or sales order, each with subtotals</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#f6f4f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#714B67;">Weighted margin</div><div style="font-size:15px;color:#555;">Every total is profit &divide; sales, never an average of percentages</div></div>
+  <div style="flex:1 1 220px;margin:8px;background:#eef6f6;border-radius:14px;padding:20px 22px;"><div style="font-size:30px;font-weight:700;color:#017E84;">2 languages</div><div style="font-size:15px;color:#555;">English and Arabic, chosen per report, with RTL PDF and Excel</div></div>
+</div>
+
+<!-- ============================== WHY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Why this module</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Standard Odoo knows your cost and your sale price, but turning them into a profit report you can hand to management takes manual work.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -10px;">
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #f1d6d6;background:#fff8f8;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#b33939;margin:0 0 12px;">In standard Odoo 16</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li><b>Sales Analysis</b> shows margin as an amount, without a line-by-line view of <b>cost price, sale price and margin&nbsp;%</b> together.</li>
+      <li>There is <b>no printable profit report</b> with company header, KPIs and subtotals.</li>
+      <li>A margin&nbsp;% column that is <b>averaged</b> in a grouped view gives a wrong total.</li>
+      <li>Pivot export gives a <b>pivot grid</b>, not a formatted per-line workbook with subtotals.</li>
+      <li>Orders in a <b>foreign currency</b> must be converted by hand before you can add them up.</li>
+      <li>No profit report prints in <b>Arabic with right-to-left layout</b>.</li>
+    </ul>
+  </div>
+  <div style="flex:1 1 440px;margin:10px;border:1px solid #cfe7e7;background:#f4fbfb;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;color:#017E84;margin:0 0 12px;">With this module</h3>
+    <ul style="font-size:15px;line-height:1.65;margin:0;padding-left:20px;color:#3a3a42;">
+      <li>Every confirmed line shows <b>Quantity, Cost Price, Sale Price, Total Cost, Total Sales, Profit and Margin&nbsp;(%)</b>.</li>
+      <li>A landscape <b>PDF</b> with KPI cards, group subtotals and a grand total, repeating its table header on every page.</li>
+      <li>Margin on every subtotal is <b>recomputed from summed profit and sales</b>, also in pivot and grouped lists.</li>
+      <li>An <b>XLSX</b> with frozen header, autofilter, group rows, subtotals and a grand total, ready to print.</li>
+      <li>All amounts are converted to <b>company currency</b> with each order&rsquo;s own rate.</li>
+      <li>Pick <b>Report Language</b> in the wizard: Arabic output switches PDF and Excel to RTL.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">How it works</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Four steps, no configuration.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;">
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">1</div><div style="font-weight:700;margin-bottom:4px;">Open</div><div style="font-size:14px;color:#555;">Go to Sales &rsaquo; Reporting &rsaquo; Product Profit Report.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">2</div><div style="font-weight:700;margin-bottom:4px;">Filter</div><div style="font-size:14px;color:#555;">Set the period, customers and companies; choose a grouping and the report language.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #e3dde2;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#714B67;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">3</div><div style="font-weight:700;margin-bottom:4px;">Choose output</div><div style="font-size:14px;color:#555;">Show on Browser, PDF Report or Export XLSX.</div></div>
+  <div style="flex:1 1 200px;margin:8px;border-radius:12px;border:1px solid #cfe7e7;background:#f4fbfb;padding:18px;"><div style="width:34px;height:34px;border-radius:50%;background:#017E84;color:#fff;font-weight:700;text-align:center;line-height:34px;margin-bottom:10px;">4</div><div style="font-weight:700;margin-bottom:4px;">Act on it</div><div style="font-size:14px;color:#555;">Spot loss lines in red, compare products and customers, share the PDF or workbook.</div></div>
+</div>
+
+<!-- ============================== FEATURES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:40px 0 6px;color:#2b2b33;">Features</h2>
+<p style="font-size:16px;color:#555;margin:0 0 4px;">The screenshots use demo data: 16 confirmed sales orders with 34 lines for 6 customers and 7 furniture products, July&ndash;September 2026, in USD, including five loss-making lines.</p>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Menus</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">One new entry, nothing overridden</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">The module adds <b>Sales &rsaquo; Reporting &rsaquo; Product Profit Report</b>. The standard <b>Sales</b> analysis and its reports are left exactly as they are.</p>
+  <img src="sopr_01_menu.png" alt="Product Profit Report entry in the Sales Reporting menu" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 1</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">One wizard for every question</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Pick <b>Start Date</b> and <b>End Date</b> (defaults: first day of this month to today), optional <b>Customers</b> (orders of their contacts are included) and <b>Companies</b>. Choose <b>Group By</b> &ndash; <b>No Grouping</b>, <b>Customer</b>, <b>Product</b> or <b>Sales Order</b> &ndash; and the <b>Report Language</b>. Then click <b>Show on Browser</b>, <b>PDF Report</b> or <b>Export XLSX</b>. A start date after the end date, or companies with different currencies, are refused with a clear message.</p>
+  <img src="sopr_02_wizard.png" alt="Product Profit Report wizard with period, options and filters" style="width:100%;max-width:1000px;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 2</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Interactive list, grouped and totalled</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Show on Browser</b> opens <b>Product Profit Analysis</b> with your filters applied and your grouping preselected. Each row shows <b>Order Date</b>, <b>Sales Order</b>, <b>Customer</b>, <b>Product</b>, <b>Quantity</b>, <b>Cost Price</b>, <b>Sale Price</b>, <b>Total Cost</b>, <b>Total Sales</b>, <b>Profit</b> and <b>Margin (%)</b>; loss lines turn red. Search filters <b>Loss Lines</b> and <b>Missing Cost</b> find problems in one click, and you can regroup by customer, product, category, order, salesperson, company or month.</p>
+  <img src="sopr_03_list.png" alt="List view grouped by product with weighted group totals and red loss lines" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 3</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Pivot with margins that add up</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Switch to <b>Pivot</b> for products by month. <b>Margin (%)</b>, <b>Cost Price</b> and <b>Sale Price</b> on every total are recomputed from summed amounts, so the July total of 6.59&nbsp;% really is July&rsquo;s profit divided by July&rsquo;s sales. A <b>Graph</b> view of profit per product is included too.</p>
+  <img src="sopr_04_pivot.png" alt="Pivot of total sales, profit and margin by product and month" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 4</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">A PDF you can hand to management</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>PDF Report</b> prints an A4 landscape document under your company&rsquo;s own report layout: title band with period and currency, KPI cards (<b>Total Sales</b>, <b>Total Cost</b>, <b>Gross Profit</b>, <b>Margin&nbsp;%</b>, <b>Order Lines</b>), the filters used, then every line with group subtotals and a <b>Grand Total</b>. A dedicated paper format reserves room for the header, the table header repeats on each page and rows never split, so the header and table never overlap.</p>
+  <img src="sopr_05_pdf.png" alt="PDF report page with KPI cards and lines grouped by product" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 5</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Arabic report with true right-to-left layout</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;">Set <b>Report Language</b> to Arabic and the same report comes out fully translated and mirrored: columns run right to left, numbers stay readable, and mixed values such as <b>[E-COM07] Large Cabinet</b> keep their bracket order. The Excel export switches its sheet to right-to-left as well. Every label, menu, field and message ships with an <b>ar_001</b> translation.</p>
+  <img src="sopr_06_pdf_arabic.png" alt="Arabic right-to-left PDF report" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<div style="margin:44px 0 0;">
+  <div style="font-size:13px;font-weight:700;color:#017E84;letter-spacing:1px;text-transform:uppercase;">Feature 6</div>
+  <h3 style="font-size:23px;font-weight:700;margin:4px 0 8px;">Excel workbook ready to filter and print</h3>
+  <p style="font-size:15px;line-height:1.6;color:#555;margin:0 0 14px;"><b>Export XLSX</b> downloads <b>SO_Product_Profit_&lt;start&gt;_&lt;end&gt;.xlsx</b> with the filters on top, a frozen header row with autofilter, group rows, <b>Subtotal</b> rows and a <b>Grand Total</b>. Amounts stay numeric, margin is a real percentage format, losses are red, and the sheet prints landscape on A4 fitted to the page width.</p>
+  <img src="sopr_07_xlsx.png" alt="Excel export grouped by customer with subtotals" style="width:100%;border:1px solid #e1e1e6;border-radius:10px;box-shadow:0 6px 24px rgba(30,30,60,.10);"/>
+</div>
+
+<!-- ============================== CALCULATION ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">How the numbers are calculated</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Simple, documented formulas &ndash; the same in all three outputs.</p>
+<div style="background:#f4fbfb;border-left:4px solid #017E84;border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.7;">
+  <b>Total Sales</b> = line subtotal (untaxed, after discount)<br/>
+  <b>Total Cost</b> = line cost from Odoo&rsquo;s <code>sale_margin</code> &times; quantity<br/>
+  <b>Profit</b> = Total Sales &minus; Total Cost &nbsp;&middot;&nbsp; <b>Margin&nbsp;%</b> = Profit &divide; Total Sales &times; 100<br/>
+  <b>Worked example</b> (S00133): 8 &times; Large Desk at $&nbsp;1,619.10 = $&nbsp;12,952.80 sales; cost 8 &times; $&nbsp;1,299.00 = $&nbsp;10,392.00; profit $&nbsp;2,560.80; margin 19.77&nbsp;%.
+</div>
+<p style="font-size:15px;line-height:1.6;color:#555;margin:18px 0 12px;">Why weighted totals matter &ndash; the eight Large Cabinet lines from the demo data:</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Method</th><th style="text-align:right;padding:10px 14px;">Large Cabinet margin</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Average of the eight line percentages</td><td style="padding:10px 14px;text-align:right;color:#b33939;">3.93&nbsp;% (misleading)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">This module: $&nbsp;48.00 profit &divide; $&nbsp;6,428.00 sales</td><td style="padding:10px 14px;text-align:right;color:#017E84;font-weight:700;">0.75&nbsp;%</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CORNER CASES ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Built for real-world corner cases</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">Each of these is handled in code and most are covered by the automated tests.</p>
+<div style="display:flex;flex-wrap:wrap;margin:0 -8px;font-size:15px;line-height:1.55;">
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Foreign-currency orders</b><br/><span style="color:#555;">Converted to company currency with the order&rsquo;s stored rate, the same way the standard Sales analysis does.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Multi-company</b><br/><span style="color:#555;">Only companies you are allowed to see; selecting companies with different currencies is refused rather than adding unlike amounts.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Time zones</b><br/><span style="color:#555;">Start and end dates are whole days in the user&rsquo;s time zone; the end date is inclusive.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Company customers</b><br/><span style="color:#555;">Filtering on a company also includes orders placed by its contacts.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Only real sales</b><br/><span style="color:#555;">Quotations and cancelled orders are excluded, as are section and note lines and down-payment lines.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Discounts and losses</b><br/><span style="color:#555;">Sale price is net of discount; negative profit and margin are shown in red and findable with <b>Loss Lines</b>.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Missing cost or zero sales</b><br/><span style="color:#555;"><b>Missing Cost</b> lists lines without a cost; a line with zero sales shows a 0&nbsp;% margin instead of an error.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Large data</b><br/><span style="color:#555;">PDF and Excel read all lines in a single SQL query that still applies access rights and record rules; an index on order state, date and company is added.</span></div>
+  <div style="flex:1 1 320px;margin:8px;padding:16px 18px;border:1px solid #e8e8ee;border-radius:12px;"><b>Nothing to print</b><br/><span style="color:#555;">PDF and Excel stop with a clear message when no line matches, instead of producing an empty document.</span></div>
+</div>
+
+<!-- ============================== SECURITY ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Security</h2>
+<p style="font-size:16px;color:#555;margin:0 0 18px;">The report shows product cost, so it is limited to users who already see all sales documents.</p>
+<table style="width:100%;border-collapse:collapse;font-size:15px;">
+  <thead><tr style="background:#714B67;color:#fff;"><th style="text-align:left;padding:10px 14px;">Who</th><th style="text-align:left;padding:10px 14px;">Sees</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Sales &ndash; User: All Documents</td><td style="padding:10px 14px;">The menu, the wizard and all three outputs (read-only analysis)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Sales &ndash; Administrator</td><td style="padding:10px 14px;">Same, inherited from All Documents</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;">Sales &ndash; User: Own Documents Only</td><td style="padding:10px 14px;">No access to the report</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;">Multi-company</td><td style="padding:10px 14px;">A global record rule limits lines to the companies selected in the company switcher</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== TECHNICAL ============================== -->
+<h2 style="font-size:28px;font-weight:700;margin:48px 0 6px;color:#2b2b33;">Technical details</h2>
+<table style="width:100%;border-collapse:collapse;font-size:15px;margin-top:12px;">
+  <tbody>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Odoo version</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">16.0, Community and Enterprise</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Depends on</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;"><code>sale_management</code>, <code>sale_margin</code></td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Python dependency</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;"><code>xlsxwriter</code> (already shipped with Odoo)</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Menus</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">Sales &rsaquo; Reporting &rsaquo; Product Profit Report</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Settings</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">None needed. Paper format <b>SO Product Profit (A4 Landscape)</b> can be adjusted in Settings &rsaquo; Technical &rsaquo; Paper Format if your header is unusually tall.</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Models</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;"><code>so.product.profit.wizard</code> (wizard), <code>so.product.profit.report</code> (read-only SQL view), <code>report.so_product_profit_report.report_so_product_profit</code> (PDF)</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Automated tests</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">22 <code>TransactionCase</code> tests: wizard defaults and validation, line and total math, weighted subtotals, pivot recomputation, multi-currency, customer, date and time-zone filters, cancelled orders, browser / PDF / XLSX outputs, Arabic translation and RTL</td></tr>
+    <tr style="border-bottom:1px solid #eee;background:#fafafa;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">Translations</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">Arabic (<code>ar_001</code>) included; <code>.pot</code> template for other languages</td></tr>
+    <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 14px;width:240px;color:#777;vertical-align:top;">License</td><td style="padding:10px 14px;overflow-wrap:anywhere;word-break:break-word;">LGPL-3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================== CONTACT ============================== -->
+<div style="margin:52px 0 40px;background:linear-gradient(120deg,#714B67 0%,#017E84 100%);border-radius:18px;padding:36px 40px;color:#fff;">
+  <h2 style="font-size:26px;font-weight:700;margin:0 0 8px;color:#fff;">Support &amp; customization</h2>
+  <p style="font-size:16px;line-height:1.6;margin:0 0 20px;color:#fff;opacity:.95;">Questions, a demo, or an adaptation to your own process? Get in touch.</p>
+  <a href="mailto:ibrahim.yahiah@gmail.com" style="display:inline-block;background:#fff;color:#714B67;font-weight:700;text-decoration:none;border-radius:8px;padding:12px 22px;margin:0 12px 10px 0;">&#9993;  ibrahim.yahiah@gmail.com</a>
+  <a href="https://www.linkedin.com/in/ibrahim-yahia" target="_blank" rel="noopener" style="display:inline-block;border:2px solid #fff;color:#fff;font-weight:700;text-decoration:none;border-radius:8px;padding:10px 22px;margin:0 0 10px 0;">LinkedIn: Ibrahim Yahia</a>
+  <p style="font-size:13px;margin:14px 0 0;opacity:.8;color:#fff;">Author: Ibrahim Yahia &middot; License: LGPL-3</p>
+</div>
+
+</section>

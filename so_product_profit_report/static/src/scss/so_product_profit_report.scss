@@ -1,0 +1,177 @@
+// SO Product Profit Report - PDF styles (wkhtmltopdf / QtWebKit safe:
+// no flexbox, no grid, no logical properties).
+$sopr-navy: #1F3A5F;
+$sopr-ink: #23303F;
+$sopr-muted: #5B6B7F;
+$sopr-line: #D9E1EA;
+$sopr-zebra: #F7F9FB;
+$sopr-group: #E8EEF5;
+$sopr-green: #2E7D5B;
+$sopr-red: #C0392B;
+
+.o_sopr {
+    color: $sopr-ink;
+    font-size: 10.5px;
+    // Overlap prevention, part 3: an explicit top gap below the reserved
+    // header area, so the first element never touches the header band.
+    margin-top: 4mm;
+
+    .o_sopr_ltr { direction: ltr; unicode-bidi: embed; }
+
+    // ---------- title band ----------
+    .o_sopr_band {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 4mm;
+        page-break-inside: avoid;
+        td { vertical-align: middle; padding: 0; }
+    }
+    .o_sopr_band_title {
+        border-left: 5px solid $sopr-navy;
+        padding-left: 10px !important;
+        h2 { margin: 0; font-size: 22px; font-weight: 700; color: $sopr-navy; }
+    }
+    .o_sopr_kicker {
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-size: 9px;
+        color: $sopr-green;
+        font-weight: 700;
+    }
+    .o_sopr_band_period { width: 32%; }
+    .o_sopr_period {
+        width: 100%;
+        border-collapse: collapse;
+        td { padding: 2px 6px; }
+    }
+    .o_sopr_meta_label {
+        color: $sopr-muted;
+        font-weight: 700;
+        white-space: nowrap;
+        text-align: left;
+    }
+    .o_sopr_meta_value { text-align: left; }
+
+    // ---------- KPI cards ----------
+    .o_sopr_kpis {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 6px 0;
+        margin: 0 -6px 4mm -6px;
+        page-break-inside: avoid;
+    }
+    .o_sopr_kpi {
+        width: 20%;
+        background: $sopr-zebra;
+        border: 1px solid $sopr-line;
+        border-top: 3px solid $sopr-navy;
+        border-radius: 4px;
+        padding: 7px 10px;
+        vertical-align: top;
+    }
+    .o_sopr_kpi_profit { border-top-color: $sopr-green; }
+    .o_sopr_kpi_loss { border-top-color: $sopr-red; }
+    .o_sopr_kpi_label {
+        color: $sopr-muted;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: .8px;
+        font-weight: 700;
+    }
+    .o_sopr_kpi_value { font-size: 15px; font-weight: 700; color: $sopr-navy; margin-top: 2px; }
+    .o_sopr_kpi_profit .o_sopr_kpi_value { color: $sopr-green; }
+    .o_sopr_kpi_loss .o_sopr_kpi_value { color: $sopr-red; }
+
+    // ---------- filters ----------
+    .o_sopr_filters {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 4mm;
+        border-top: 1px solid $sopr-line;
+        border-bottom: 1px solid $sopr-line;
+        page-break-inside: avoid;
+        td { padding: 4px 6px; vertical-align: top; }
+    }
+
+    // ---------- data table ----------
+    .o_sopr_table {
+        width: 100%;
+        border-collapse: collapse;
+        page-break-inside: auto;
+
+        // Repeat the header on every page; never repeat a footer.
+        thead { display: table-header-group; }
+        tfoot { display: table-row-group; }
+        tr { page-break-inside: avoid; page-break-after: auto; }
+
+        th {
+            background: $sopr-navy;
+            color: #fff;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 6px 5px;
+            border: 1px solid $sopr-navy;
+            text-align: left;
+            vertical-align: bottom;
+        }
+        td {
+            padding: 4px 5px;
+            border-bottom: 1px solid $sopr-line;
+            vertical-align: top;
+            text-align: left;
+        }
+        .o_sopr_num { text-align: right; white-space: nowrap; }
+        .o_sopr_c_date { width: 8%; white-space: nowrap; }
+        .o_sopr_c_order { width: 8%; white-space: nowrap; }
+        .o_sopr_line:nth-child(even) td { background: $sopr-zebra; }
+        .o_sopr_uom { color: $sopr-muted; font-size: 8.5px; }
+        .o_sopr_neg { color: $sopr-red; }
+
+        .o_sopr_group td {
+            background: $sopr-group;
+            color: $sopr-navy;
+            font-weight: 700;
+            border-top: 1px solid $sopr-line;
+            padding-top: 6px;
+        }
+        .o_sopr_subtotal td {
+            font-weight: 700;
+            background: #F4F6F9;
+            border-bottom: 2px solid $sopr-line;
+        }
+        .o_sopr_total td {
+            font-weight: 700;
+            font-size: 11px;
+            color: #fff;
+            background: $sopr-green;
+            border-bottom: none;
+            padding: 7px 5px;
+        }
+    }
+    .o_sopr_note {
+        margin-top: 3mm;
+        color: $sopr-muted;
+        font-size: 8.5px;
+        page-break-inside: avoid;
+    }
+}
+
+// ---------- RTL (Arabic) ----------
+.o_sopr.o_sopr_rtl {
+    direction: rtl;
+    font-family: "DejaVu Sans", "Noto Naskh Arabic", Arial, sans-serif;
+
+    .o_sopr_band_title {
+        border-left: none;
+        border-right: 5px solid $sopr-navy;
+        padding-left: 0 !important;
+        padding-right: 10px !important;
+    }
+    .o_sopr_kicker, .o_sopr_kpi_label { text-transform: none; letter-spacing: 0; }
+    .o_sopr_meta_label, .o_sopr_meta_value { text-align: right; }
+    .o_sopr_table {
+        th, td { text-align: right; }
+        // numbers sit on the logical end of the cell (left in RTL)
+        th.o_sopr_num, td.o_sopr_num { text-align: left; }
+    }
+}

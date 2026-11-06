@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Overlap prevention, part 1 (wkhtmltopdf level):
+        Odoo renders the company header as a separate header HTML. The body
+        only starts below it when margin_top (mm) is larger than the real
+        header height and header_spacing reserves the gap. These values leave
+        room for every standard external layout (standard/boxed/bold/striped).
+    -->
+    <record id="paperformat_so_product_profit" model="report.paperformat">
+        <field name="name">SO Product Profit (A4 Landscape)</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">45</field>
+        <field name="margin_bottom">22</field>
+        <field name="margin_left">8</field>
+        <field name="margin_right">8</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">38</field>
+        <field name="dpi">90</field>
+    </record>
+</odoo>
