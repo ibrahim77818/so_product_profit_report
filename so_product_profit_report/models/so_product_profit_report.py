@@ -43,7 +43,7 @@ class SoProductProfitReport(models.Model):
     total_sales = fields.Monetary(string='Total Sales', readonly=True)
     profit = fields.Monetary(string='Profit', readonly=True)
     margin_percent = fields.Float(
-        string='Margin (%)', digits=(16, 2), readonly=True, group_operator='avg',
+        string='Margin (%)', digits=(16, 2), readonly=True, aggregator='avg',
         help='Profit / Total Sales x 100. Group totals are weighted by sales.')
 
     # ------------------------------------------------------------------
@@ -123,7 +123,7 @@ class SoProductProfitReport(models.Model):
 
     # ------------------------------------------------------------------
     # Aggregation: ratios must be recomputed from sums, never averaged.
-    # In 17.0 the list/pivot/graph views still go through web_read_group ->
+    # In 18.0 the list/pivot/graph views still go through web_read_group ->
     # read_group, so this public override is the right hook.
     # ------------------------------------------------------------------
     @api.model

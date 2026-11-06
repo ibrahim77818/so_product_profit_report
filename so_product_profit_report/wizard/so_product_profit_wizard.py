@@ -138,7 +138,7 @@ class SoProductProfitWizard(models.TransientModel):
             self._get_report_domain(),
             order='date_order asc, order_reference asc, id asc')
         columns = ['"%s"."%s"' % (Report._table, col) for col in REPORT_COLUMNS]
-        # 17.0: Query.select() returns an SQL object that cr.execute() accepts
+        # 17.0+: Query.select() returns an SQL object that cr.execute() accepts
         # directly; 16.0 returned a (query_str, params) tuple.
         sql = query.select(*columns)
         if isinstance(sql, tuple):

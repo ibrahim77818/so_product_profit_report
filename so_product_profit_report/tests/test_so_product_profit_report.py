@@ -248,7 +248,7 @@ class TestSoProductProfitReport(TransactionCase):
         self.assertNotIn(self.order_2.name, {l['order'] for l in data['lines']})
 
     def test_24_locked_orders_are_included(self):
-        # 17.0: locking keeps state 'sale' and sets the 'locked' flag
+        # 17.0+: locking keeps state 'sale' and sets the 'locked' flag
         # (16.0 used the 'done' state instead).
         self.order_1.action_lock()
         self.assertTrue(self.order_1.locked)
@@ -266,6 +266,8 @@ class TestSoProductProfitReport(TransactionCase):
         action = self._wizard(group_by='customer').action_view_report()
         self.assertEqual(action['type'], 'ir.actions.act_window')
         self.assertEqual(action['res_model'], 'so.product.profit.report')
+        # 18.0 renamed the 'tree' view type to 'list'
+        self.assertEqual(action['view_mode'].split(',')[0], 'list')
         self.assertEqual(action['context'].get('group_by'), ['partner_id'])
         records = self.env['so.product.profit.report'].search(action['domain'])
         self.assertEqual(len(records), 3)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_so_product_profit_report_tree" model="ir.ui.view">
-        <field name="name">so.product.profit.report.tree</field>
+        <field name="name">so.product.profit.report.list</field>
         <field name="model">so.product.profit.report</field>
         <field name="arch" type="xml">
-            <tree create="false" edit="false" delete="false"
+            <list create="false" edit="false" delete="false"
                   decoration-danger="profit &lt; 0" decoration-muted="total_sales == 0">
                 <field name="date_order" widget="date"/>
                 <field name="order_id" widget="many2one" optional="show"/>
@@ -23,7 +23,7 @@
                 <field name="total_sales" sum="Total"/>
                 <field name="profit" sum="Total"/>
                 <field name="margin_percent"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -85,7 +85,7 @@
     <record id="action_so_product_profit_report" model="ir.actions.act_window">
         <field name="name">Product Profit Analysis</field>
         <field name="res_model">so.product.profit.report</field>
-        <field name="view_mode">tree,pivot,graph</field>
+        <field name="view_mode">list,pivot,graph</field>
         <field name="search_view_id" ref="view_so_product_profit_report_search"/>
         <field name="context">{}</field>
     </record>
